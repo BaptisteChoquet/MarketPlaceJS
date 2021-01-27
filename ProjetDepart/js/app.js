@@ -59,6 +59,30 @@ function addCart(Article, Prix, Qt){
 	newLine.appendChild(newTr);
 	newTr.style.backgroundColor = "white";
 	panier.appendChild(newLine);
-	alert("Vous avez ajouer l'article: "+Article+" a votre panier")
+	createNotif(Article);
 }
+
+
+function createNotif(Article){
+	console.log(Article)
+	let div = document.querySelector('.notif')
+	let notif = document.createElement('div')
+	div.appendChild(notif)
+	notif.style.backgroundColor = "cyan";
+	notif.style.marginBottom = 10+"px";
+
+	notif.innerHTML = Article+ " a été ajouté au panier"
+	setTimeout(function(){
+    notif.style.display = "none";
+}, 3000);
+	
+
+
+}
+
+
+
+
+
+
 
