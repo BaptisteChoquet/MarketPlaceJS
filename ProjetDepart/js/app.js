@@ -47,13 +47,18 @@ function addCart(Article, Prix, Qt){
 	newTr.appendChild(newTh3);
 	newTh3.innerHTML = Qt;
 
+
+	let Supp = document.createElement('button')
+	Supp.style.width = 1+"px";
 	let newTh4 = document.createElement('th');
+	newTh4.appendChild(Supp)
 	newTr.appendChild(newTh4);
 
 
-
+	
 	newLine.appendChild(newTr);
 	newTr.style.backgroundColor = "white";
 	panier.appendChild(newLine);
+	alert("Vous avez ajouer l'article: "+Article+" a votre panier")
 }
 
