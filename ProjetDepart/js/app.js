@@ -3,11 +3,16 @@ let panier = document.querySelector('#cart-table');
 let Allh4 = document.querySelectorAll('h4');
 let allDiscount = document.querySelectorAll('.discount');
 
-
+//ajout d'un event listener sur chaque boutton
 buttonAdd.forEach(function(elem){
 	elem.addEventListener("click",clicSurBtn)
 })
 
+/* Function: ClicSurBtn
+	detect a clic on a button and get the information of the article(name and price)
+
+
+*/
 function clicSurBtn(e){
     const BtnClique = e.target;
     const BtnIndex = BtnClique.getAttribute('data-id');
@@ -17,7 +22,12 @@ function clicSurBtn(e){
     addCart(article,Price,1);
 }
 
-
+/* Function: addCart
+	Param1: The name of the Article
+	Param2: The price of the Article
+	Param3:The quantity to add
+	Add the Article clicked to the cart
+*/
 function addCart(Article, Prix, Qt){
 	let newLine = document.createElement('thead');
 	let newTr = document.createElement('tr');
