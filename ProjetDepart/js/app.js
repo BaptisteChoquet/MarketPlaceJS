@@ -43,24 +43,29 @@ function clicSurBtn(e){
 	Add the Article clicked to the cart
 */
 function addCart(Article, Prix, Qt){
-	let allTh = document.querySelectorAll('th');
-	let isAlreadyBuy = false;
-	let index = 0;
-	for(let i = 0; i < allTh.length;i++){
-		console.log("1: "+Article +" 2: "+allTh[i].innerHTML)
-		if(Article == allTh[i].innerHTML){
-			isAlreadyBuy = true;
-			index = i;
+	let allTh = document.querySelectorAll('th'); //-------------recupere tout les th
+	let isAlreadyBuy = false;					//declaration d'une variable pour verifier si l'article est deja acheter
+	let index = 0;								//declaration d'une variable index
+	for(let i = 0; i < allTh.length;i++){		//pour chaque th
+		
+		if(Article == allTh[i].innerHTML){ 		//verifie si l'article que on veut acheter a le meme nom qu'un article dans le panier
+			isAlreadyBuy = true;				//si vrai passe la variable isAlready by a true
+			index = i;							//et recupere l'index a laquelle l'article a été trouvé dans le panier
 		}
 	}
-	console.log(isAlreadyBuy)
-	if(isAlreadyBuy){
-		let value = allTh[index+2].innerHTML
-		let nbValue = parseInt(value)
-		allTh[index+2].innerHTML = nbValue+1
-												//CHANGEMENT DES PRIX
-	}else{
-		let newLine = document.createElement('thead');
+	
+	if(isAlreadyBuy){							//si l'objet a deja été acheter
+		let value = allTh[index+2].innerHTML	//recupere la quantité dans le panier
+		let nbValue = parseInt(value)			//la convertie en int
+		allTh[index+2].innerHTML = nbValue+1	//ajoute 1 a la valeur de la quantité et la renvoie dans le panier
+		
+		let price = allTh[index+1].innerHTML	//recupere dans le html le prix de l'article en double
+		let nbPrice = parseFloat(price)			//la convertit en float
+		let Prix0 = parseFloat(Prix)			//convertit le prix initial de l'objet en float
+		allTh[index+1].innerHTML = nbPrice + Prix0 + "€"	//additione l'ancien prix dans le panier et l'inital et renvoi sa dans le panier
+
+	}else{										//-------------sinon
+	let newLine = document.createElement('thead');
 	let newTr = document.createElement('tr');
 	
 	let newTh0 = document.createElement('th');
@@ -69,7 +74,7 @@ function addCart(Article, Prix, Qt){
 	let newTh1 = document.createElement('th');
 	newTr.appendChild(newTh1);
 	newTh1.innerHTML = Article;
-
+												//} crée une nouvelle ligne avec les info
 	let newTh2 = document.createElement('th');
 	newTr.appendChild(newTh2);
 	newTh2.innerHTML = Prix;
@@ -99,24 +104,30 @@ function addCart(Article, Prix, Qt){
 	
 }
 
-
+/* createNotif
+	param1: The Article buyed
+	Param2: The type of Notif ("add","supp","stock")
+	Display a Notif with the article add to cart (if the Param2 is "add")/ the article remove to cart (if the param2 is "sup")/ the stock was empty (if param2 is "stock")
+*/
 function createNotif(Article,Text){
-	let div = document.querySelector('#notification_container')
-	let notif = document.createElement('p')
 	
-	div.appendChild(notif)
-	notif.style.backgroundColor = "cyan";
-	notif.style.marginBottom = 10+"px";
-	if(Text == "add"){
-		notif.innerHTML = Article+ " a été ajouté au panier"
-	}else if(Text == "sup"){
-		notif.innerHTML = Article+ " a été retiré du panier"
-	}else if(Text == "stock"){
-		notif.innerHTML = "il n'a plus de disponibilité pour l'article: "+Article;
+	let div = document.querySelector('#notification_container')	//recupere la div conteneur de notification
+	let notif = document.createElement('p')						//crée une balise p
+	
+	div.appendChild(notif)										//ajoute la balise p nouvellement crée a la div contenaire
+	notif.style.backgroundColor = "cyan";						//met la couleur bleu (inutile mais un peu estetique)
+	notif.style.marginBottom = 10+"px";							//met une marge en bas de la notif pour aéré les notif (encore du design pas ouf )
+	if(Text == "add"){												//si le text est add
+		notif.innerHTML = Article+ " a été ajouté au panier"	//la balise p sort un texte disant que l'aticle a bien été ajouté au panier
+	}else if(Text == "sup"){										//si le texte est sup
+		notif.innerHTML = Article+ " a été retiré du panier"	//la balise p sort un texte disant que l'aticle a bien été supprimer du panier
+	}else if(Text == "stock"){										//si le texte est stock
+
+		notif.innerHTML = "il n'a plus de disponibilité pour l'article: "+ Article;	//la balise p sort un texte diant que les stock sont vide
 	}
 	
-	setTimeout(function(){
-    notif.style.display = "none";
+	setTimeout(function(){	//attend 3s
+    notif.style.display = "none";	//fait disparaitre les notif
 }, 3000);
 	
 
