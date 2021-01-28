@@ -3,7 +3,8 @@ let panier = document.querySelector('#cart-table');
 let Allh4 = document.querySelectorAll('h4');
 let allDiscount = document.querySelectorAll('.discount');
 let allStock = document.querySelectorAll('.stock');
-
+let searchbar = document.querySelector('#search-item input');
+let cardTitle = document.querySelectorAll('.info__card > h4');
 
 
 
@@ -133,6 +134,90 @@ function createNotif(Article,Text){
 
 
 }
+
+//------------Register the item in the local storage-----------------------------//
+
+const stringifyCourses = JSON.stringify(COURSES);
+const parseCourses = JSON.parse(localStorage.getItem("panier"));
+
+
+function saveContentPanier() {
+
+    localStorage.setItem("panier", stringifyCourses)
+}
+
+saveContentPanier();
+
+//-------------Register item in the cart (visual)----------------------//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------Surf in the search Bar---------------------------//
+
+searchbar.addEventListener('keyup',recherche);
+
+function recherche(){
+    let input = searchbar.value;
+    let temp = input.toUpperCase();
+    let cards = document.querySelectorAll('.course__item');
+    let errormsg = document.querySelector('.hidden');
+    let hiddenCards = 0;
+	
+	
+    for(let i = 0; i < cards.length;i++){
+        let newName = cardTitle[i].innerText.toUpperCase();
+        if(!(newName.includes(temp))){
+            cards[i].style.display = "none";
+            hiddenCards++;
+        } else {
+            cards[i].style.display = "flex";
+        }
+        if(hiddenCards === cards.length){
+            errormsg.setAttribute('style','display:block !important');
+        } else {
+            errormsg.setAttribute('style','display:none !important');
+        }
+    }
+}
+
 
 
 
