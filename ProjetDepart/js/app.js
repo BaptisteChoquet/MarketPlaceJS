@@ -11,6 +11,7 @@ let allStock = document.querySelectorAll('.stock');
 //ajout d'un event listener sur chaque boutton
 buttonAdd.forEach(function(elem){
 	elem.addEventListener("click",clicSurBtn)
+	
 })
 
 /* Function: ClicSurBtn
@@ -21,8 +22,9 @@ buttonAdd.forEach(function(elem){
 function clicSurBtn(e){
     const BtnClique = e.target;
     const BtnIndex = BtnClique.getAttribute('data-id');
-    
+    console.log(BtnIndex)
     let article = Allh4[BtnIndex-1].innerHTML
+    
     let Price = allDiscount[BtnIndex-1].innerHTML
     let stock = allStock[BtnIndex-1].innerHTML //recuperation de la string des stock
     let nbStock = parseInt(stock);	//conversion en int
@@ -133,6 +135,23 @@ function createNotif(Article,Text){
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
