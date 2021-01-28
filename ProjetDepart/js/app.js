@@ -2,6 +2,7 @@ let buttonAdd = document.querySelectorAll('.add-to-cart');
 let panier = document.querySelector('#cart-table');
 let Allh4 = document.querySelectorAll('h4');
 let allDiscount = document.querySelectorAll('.discount');
+let orderBtn = document.querySelector("#order");
 let allStock = document.querySelectorAll('.stock');
 let searchbar = document.querySelector('#search-item input');
 let cardTitle = document.querySelectorAll('.info__card > h4');
@@ -243,6 +244,17 @@ function recherche(){
 
 
 
+
+
+
+
+/*  open a click registration form page
+*/
+orderBtn.addEventListener('click', formulaire)
+
+function formulaire(){
+	window.open("js/form.html");
+}
 
 
 
