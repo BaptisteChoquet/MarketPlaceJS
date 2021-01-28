@@ -5,6 +5,7 @@ let allDiscount = document.querySelectorAll('.discount');
 let allStock = document.querySelectorAll('.stock');
 let searchbar = document.querySelector('#search-item input');
 let cardTitle = document.querySelectorAll('.info__card > h4');
+let orderBtn = document.querySelector("#order");
 
 
 
@@ -142,8 +143,14 @@ function createNotif(Article,Text){
 const stringifyCourses = JSON.stringify(COURSES);
 const parseCourses = JSON.parse(localStorage.getItem("panier"));
 
+/*  open a click registration form page
+*/
+orderBtn.addEventListener('click', formulaire)
 
 function saveContentPanier() {
+function formulaire(){
+	window.open("js/form.html");
+}
 
     localStorage.setItem("panier", stringifyCourses)
 }
