@@ -2,6 +2,7 @@ let buttonAdd = document.querySelectorAll('.add-to-cart');
 let panier = document.querySelector('#cart-table');
 let Allh4 = document.querySelectorAll('h4');
 let allDiscount = document.querySelectorAll('.discount');
+let orderBtn = document.querySelector("#order");
 
 //ajout d'un event listener sur chaque boutton
 buttonAdd.forEach(function(elem){
@@ -79,6 +80,17 @@ function createNotif(Article){
 
 
 }
+
+
+
+/*  open a click registration form page
+*/
+orderBtn.addEventListener('click', formulaire)
+
+function formulaire(){
+	window.open("js/form.html");
+}
+
 
 
 
