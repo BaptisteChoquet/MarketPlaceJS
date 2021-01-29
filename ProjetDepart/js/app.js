@@ -112,7 +112,22 @@ function addCart(Article, Prix, Qt){
 	
 	newLine.appendChild(newTr);
 	newTr.style.backgroundColor = "white";
-	panier.appendChild(newLine);
+    panier.appendChild(newLine);
+
+//--------------------------------Delete an item from the cart---------------------//
+
+    
+    let buttonSuppr = document.querySelectorAll('button');
+
+
+    for (var i = 0 ; i < buttonSuppr.length; i++) {
+        console.log("Allo");
+        let btnSpr = buttonSuppr[i];
+        btnSpr.addEventListener('click' , function(event){
+            let buttonClicked = event.target;
+            buttonClicked.parentElement.parentElement.remove();
+        }) ; 
+     }
 	}
 
 
@@ -197,6 +212,10 @@ function LocalStorageCharge(){
         }
     }
 }
+
+
+
+
 
 
 
