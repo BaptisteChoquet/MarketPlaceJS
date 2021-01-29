@@ -160,7 +160,29 @@ saveContentPanier();
 
 //-------------Register item in the cart (visual)----------------------//
 
+function LocalStorageCharge(){
+    if(localStorage.getItem('Panier') != null){
+        for(let i = 0; i < panier.length; i++){
+            console.log(panier[i].title);
+            const article = document.createElement('tr');
 
+            const articleImg = document.createElement('td');
+
+            const imageTd = document.createElement('img');
+            imageTd.setAttribute('src', panier[i].img);
+            articleImg.appendChild(imageTd);
+
+            const articleTitle = document.createElement('td');
+            articleTitle.innerText = panier[i].title;
+
+            const articlePrice = document.createElement('td');
+            articlePrice.innerText = panier[i].price;
+
+            const articleStock = document.createElement('td');
+            articleStock.innerText = panier[i].stock;
+        }
+    }
+}
 
 
 
