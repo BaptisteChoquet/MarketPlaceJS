@@ -6,7 +6,7 @@ let allStock = document.querySelectorAll('.stock');
 const confirmeCart = document.querySelector('#order');
 let emptyCart = document.querySelector('#empty-cart');
 let searchbar = document.querySelector('#inputText');
-
+let buttonSuppr = document.querySelectorAll('button');
 
 
 confirmeCart.addEventListener("click",function(e){
@@ -37,7 +37,7 @@ buttonAdd.forEach(function(elem){
 function clicSurBtn(e){
     const BtnClique = e.target;
     const BtnIndex = BtnClique.getAttribute('data-id');
-    console.log(BtnIndex)
+    
     let article = Allh4[BtnIndex-1].innerHTML
     
     let Price = allDiscount[BtnIndex-1].innerHTML
@@ -91,6 +91,7 @@ function addCart(Article, Prix, Qt){
 	
 	let newTh1 = document.createElement('th');
 	newTr.appendChild(newTh1);
+	newTh1.setAttribute('class','titleArticle')
 	newTh1.innerHTML = Article;
 												//} crée une nouvelle ligne avec les info
 	let newTh2 = document.createElement('th');
@@ -99,6 +100,7 @@ function addCart(Article, Prix, Qt){
 	
 	let newTh3 = document.createElement('th');
 	newTr.appendChild(newTh3);
+	newTh3.setAttribute('class','qt');
 	newTh3.innerHTML = Qt;
 
 
@@ -117,24 +119,39 @@ function addCart(Article, Prix, Qt){
 //--------------------------------Delete an item from the cart---------------------//
 
     
-    let buttonSuppr = document.querySelectorAll('button');
+    
+	buttonSuppr = document.querySelectorAll('button');
+	let title = document.querySelectorAll('.title');
+	ArticlePanier = document.querySelectorAll('.titleArticle');
+	let nbqt = document.querySelectorAll('.qt')
+	Supp.addEventListener('click',function(e){
+		let buttonClicked = event.target;
+        for(let i = 0;i<buttonSuppr.length;i++){
+        	if(buttonSuppr[i] == buttonClicked){
+        		let qt = nbqt[i].innerHTML;
+        		let nameArticle = ArticlePanier[i].innerHTML
+        		
+        		for(let c = 0;c<title.length;c++){
+        			if(nameArticle == title[c].innerHTML){
+        				let stock = allStock[c].innerHTML
+        				let nbStock = parseInt(stock);
+        				let nbqt2 = parseInt(qt);
+        				nbStock = nbStock +nbqt2;
+        				allStock[c].innerHTML = nbStock;
+        				
+        				
+        			}
+        		}
+        	}
+        }
+        
 
-
-    for (var i = 0 ; i < buttonSuppr.length; i++) {
-        console.log("Allo");
-        let btnSpr = buttonSuppr[i];
-        btnSpr.addEventListener('click' , function(event){
-            let buttonClicked = event.target;
-            buttonClicked.parentElement.parentElement.remove();
-        }) ; 
-     }
-	}
-
-
-
+        buttonClicked.parentElement.parentElement.remove();
+	})
 	
 	createNotif(Article,"add");
 	
+	}
 }
 
 /* createNotif

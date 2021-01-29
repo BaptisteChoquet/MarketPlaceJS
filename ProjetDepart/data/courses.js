@@ -8,6 +8,13 @@ const COURSES = {
 
 loadCours()
 
+
+
+
+/*laodcours
+	this function load the article in courses and create an contenaire un html with all the Article's info
+
+*/
 function loadCours(){
 	
 	let list = document.querySelector('.courses__container');
