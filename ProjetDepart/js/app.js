@@ -2,19 +2,28 @@ let buttonAdd = document.querySelectorAll('.add-to-cart');
 let panier = document.querySelector('#cart-table');
 let Allh4 = document.querySelectorAll('h4');
 let allDiscount = document.querySelectorAll('.discount');
-let orderBtn = document.querySelector("#order");
 let allStock = document.querySelectorAll('.stock');
-let searchbar = document.querySelector('#search-item input');
-let cardTitle = document.querySelectorAll('.info__card > h4');
-let orderBtn = document.querySelector("#order");
+const confirmeCart = document.querySelector('#order');
+let emptyCart = document.querySelector('#empty-cart');
 
+confirmeCart.addEventListener("click",function(e){
+	window.location = "js/form.html";
+})
+
+emptyCart.addEventListener('click',function(e){
+	let ArticlePanier = document.querySelectorAll('.ArticlePanier');
+	for(let i = 0;i<ArticlePanier.length;i++){
+		ArticlePanier[i].style.display = "none";
+	}
+
+})
 
 
 
 //ajout d'un event listener sur chaque boutton
 buttonAdd.forEach(function(elem){
 	elem.addEventListener("click",clicSurBtn)
-	
+
 })
 
 /* Function: ClicSurBtn
@@ -72,6 +81,7 @@ function addCart(Article, Prix, Qt){
 	}else{										//-------------sinon
 	let newLine = document.createElement('thead');
 	let newTr = document.createElement('tr');
+	newTr.setAttribute('class','ArticlePanier')
 	
 	let newTh0 = document.createElement('th');
 	newTr.appendChild(newTh0);
@@ -139,26 +149,12 @@ function createNotif(Article,Text){
 
 }
 
-//------------Register the item in the local storage-----------------------------//
 
-const stringifyCourses = JSON.stringify(COURSES);
-const parseCourses = JSON.parse(localStorage.getItem("panier"));
 
-/*  open a click registration form page
-*/
-orderBtn.addEventListener('click', formulaire)
 
-function saveContentPanier() {
-function formulaire(){
-	window.open("js/form.html");
-}
 
-    localStorage.setItem("panier", stringifyCourses)
-}
 
-saveContentPanier();
 
-//-------------Register item in the cart (visual)----------------------//
 
 
 
@@ -168,93 +164,6 @@ saveContentPanier();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//-----------------------Surf in the search Bar---------------------------//
-
-searchbar.addEventListener('keyup',recherche);
-
-function recherche(){
-    let input = searchbar.value;
-    let temp = input.toUpperCase();
-    let cards = document.querySelectorAll('.course__item');
-    let errormsg = document.querySelector('.hidden');
-    let hiddenCards = 0;
-	
-	
-    for(let i = 0; i < cards.length;i++){
-        let newName = cardTitle[i].innerText.toUpperCase();
-        if(!(newName.includes(temp))){
-            cards[i].style.display = "none";
-            hiddenCards++;
-        } else {
-            cards[i].style.display = "flex";
-        }
-        if(hiddenCards === cards.length){
-            errormsg.setAttribute('style','display:block !important');
-        } else {
-            errormsg.setAttribute('style','display:none !important');
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*  open a click registration form page
-*/
-orderBtn.addEventListener('click', formulaire)
-
-function formulaire(){
-	window.open("js/form.html");
-}
 
 
 

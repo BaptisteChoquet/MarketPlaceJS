@@ -1,11 +1,11 @@
-const inpName = document.querySelector('.form-groupe:nth-child(1) input');
-const inpAdress = document.querySelector('.form-groupe:nth-child(2) input');
-const inpPcode = document.querySelector('.form-groupe:nth-child(3) input');
-const inpPays = document.querySelector('.form-groupe:nth-child(4) input');
-const inpTelNum = document.querySelector('.form-groupe:nth-child(6) input');
-const inpMail = document.querySelector('.form-groupe:nth-child(7) input');
-const inpCB = document.querySelector('.form-groupe:nth-child(8) input');
-const inpConfirm = document.querySelector('.form-groupe:nth-child(9) input');
+const inpName = document.querySelector('#name');
+const inpAdress = document.querySelector('#adresse');
+const inpPcode = document.querySelector('#codepostal');
+const inpPays = document.querySelector('#pays');
+const inpTelNum = document.querySelector('#numtel');
+const inpMail = document.querySelector('#email');
+const inpCB = document.querySelector('#numberCb');
+const inpConfirm = document.querySelector('.confirme');
 const allImg = document.querySelectorAll('.icone-verif');
 const allSpan = document.querySelectorAll('span');
 const allLigne = document.querySelectorAll('.ligne div');
@@ -19,10 +19,13 @@ Add an Event Listener on Name Input
 
 inpName.addEventListener('input', function(e){
 
-    if(e.target.value.length >= 3) {
-        allImg[0].style.display = "inline";
+    let name = inpName.value
+    
+    if(name.length >= 3 && name.search(" ") >=0) {
+        allImg[0].style.display = "block";
         allImg[0].src = "ressources/check.svg";
         allSpan[0].style.display = "none";
+
     }   
     else {
         allImg[0].style.display = "inline";
@@ -32,9 +35,54 @@ inpName.addEventListener('input', function(e){
 
 })
 
+inpAdress.addEventListener('input',function(e){
+
+    let adresse = inpAdress.value
+    
+    if(adresse.search(/[0-9]/)>= 0 && adresse.search(/[a-z]/)>= 0 || adresse.search(/[A-Z]/)>= 0){
+        allImg[1].style.display = "block";
+        allImg[1].src = "ressources/check.svg";
+        allSpan[1].style.display = "none";
+    }else{
+        allImg[1].style.display = "inline";
+        allImg[1].src = "ressources/error.svg";
+        allSpan[1].style.display = "inline";
+    }
+
+
+})
+    
+inpPcode.addEventListener('input',function(e){
+    let Pcode = inpPcode.value;
+    if(Pcode.length ==5 && Pcode.search(/[a-z]/) == -1 && Pcode.search(/[A-Z]/) == -1){
+        allImg[2].style.display = "block";
+        allImg[2].src = "ressources/check.svg";
+        allSpan[2].style.display = "none";
+    }else{
+        allImg[2].style.display = "inline";
+        allImg[2].src = "ressources/error.svg";
+        allSpan[2].style.display = "inline";
+    }
 
 
 
+})
+
+inpPays.addEventListener('input',function(e){
+    let pays = inpPays.value;
+    if(pays.length >= 4 && pays.search(/[0-9]/) == -1){
+        allImg[3].style.display = "block";
+        allImg[3].src = "ressources/check.svg";
+        allSpan[3].style.display = "none";
+    }else{
+        allImg[3].style.display = "inline";
+        allImg[3].src = "ressources/error.svg";
+        allSpan[3].style.display = "inline";
+    }
+
+
+
+})
 /* 
 
 Add an Event Listener on Mail Input
@@ -47,15 +95,15 @@ inpMail.addEventListener('input', function(e){
     
     if(e.target.value.search(regexEmail) === 0){
 
-        allImg[1].style.display = "inline";
-        allImg[1].src = "ressources/check.svg";
-        allSpan[1].style.display = "none";
+        allImg[5].style.display = "inline";
+        allImg[5].src = "ressources/check.svg";
+        allSpan[5].style.display = "none";
 
     } else if(e.target.value.search(regexEmail) === -1) {
 
-        allImg[1].style.display = "inline";
-        allImg[1].src = "ressources/error.svg";
-        allSpan[1].style.display = "inline";
+        allImg[5].style.display = "inline";
+        allImg[5].src = "ressources/error.svg";
+        allSpan[5].style.display = "inline";
 
     }
 
@@ -74,6 +122,35 @@ let objValidation = {
     chiffre : 0
 }
 
+
+
+inpTelNum.addEventListener('input',function(e){
+
+    let nbTel = inpTelNum.value;
+    if(nbTel.search(/[+]/) == 0){
+        if(nbTel.length == 12 && nbTel.search(/[a-z]/) == -1 && nbTel.search(/[A-Z]/) == -1){
+            allImg[4].style.display = "inline";
+            allImg[4].src = "ressources/check.svg";
+            allSpan[4].style.display = "none";
+        }else{
+            allImg[4].style.display = "inline";
+            allImg[4].src = "ressources/error.svg";
+            allSpan[4].style.display = "inline";
+        }
+    }else{
+        if(nbTel.length == 10 && nbTel.search("0") == 0 ){
+            allImg[4].style.display = "inline";
+            allImg[4].src = "ressources/check.svg";
+            allSpan[4].style.display = "none";
+        }else{
+            allImg[4].style.display = "inline";
+            allImg[4].src = "ressources/error.svg";
+            allSpan[4].style.display = "inline";
+        }
+    }
+
+
+})
 /* 
 
 Add an Event Listener on cb Input
@@ -115,12 +192,12 @@ inpCB.addEventListener('input', function(e){
         }
     }
     if(testAll < 3){
-        allSpan[2].style.display = "inline";
-        allImg[2].style.display = "inline";
-        allImg[2].src = "ressources/error.svg";
+        allSpan[6].style.display = "inline";
+        allImg[6].style.display = "inline";
+        allImg[6].src = "ressources/error.svg";
     } else {
-        allSpan[2].style.display = "none";
-        allImg[2].src = "ressources/check.svg";
+        allSpan[6].style.display = "none";
+        allImg[6].src = "ressources/check.svg";
     }
 
 
@@ -133,18 +210,15 @@ Add an Event Listener on Confirmation Input
 
 */
 
-inpConfirme.addEventListener('input',function(e){
+inpConfirm.addEventListener('click',function(e){
 
-    if(e.target.value.length === 0){
-        allImg[3].style.display = "inline";
-        allImg[3].src = "ressources/error.svg";
+    for(let i = 0;i<allImg.length;i++){
+        if(allImg[i].src == "ressources/error.svg" || allImg[i].style.display == ""){
+            console.log("non c pas bon")
+            return;
+        }
     }
-    else if(e.target.value === valeurInp){
-        allImg[3].style.display = "inline";
-        allImg[3].src = "ressources/check.svg";
-    } else {
-        allImg[3].style.display = "inline";
-        allImg[3].src = "ressources/error.svg";
-    }
+    console.log("ouais c bon")
+    window.location = "validation.html";
 
 })
