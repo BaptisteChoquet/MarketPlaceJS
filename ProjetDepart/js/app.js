@@ -124,7 +124,9 @@ function addCart(Article, Prix, Qt){
 	let title = document.querySelectorAll('.title');
 	ArticlePanier = document.querySelectorAll('.titleArticle');
 	let nbqt = document.querySelectorAll('.qt')
-	Supp.addEventListener('click',function(e){
+	
+	Supp.addEventListener('click',function(e){	//permet de supprimer un article dans le panier et remet a jour les stock
+		//gestion des stock
 		let buttonClicked = event.target;
         for(let i = 0;i<buttonSuppr.length;i++){
         	if(buttonSuppr[i] == buttonClicked){
@@ -146,7 +148,7 @@ function addCart(Article, Prix, Qt){
         }
         
 
-        buttonClicked.parentElement.parentElement.remove();
+        buttonClicked.parentElement.parentElement.remove();	//supersion du manier
 	})
 	
 	createNotif(Article,"add");
@@ -206,6 +208,13 @@ saveContentPanier();
 */
 //-------------Register item in the cart (visual)----------------------//
 
+
+
+
+/*LocalStorageCharge
+	this function load in the local storage the cart of the user
+
+*/
 function LocalStorageCharge(){
     if(localStorage.getItem('Panier') != null){
         for(let i = 0; i < panier.length; i++){
@@ -275,7 +284,9 @@ function LocalStorageCharge(){
 //-----------------------Surf in the search Bar---------------------------//
 
 searchbar.addEventListener('keyup',recherche);
-
+/*recherche
+	allows to search a article by it name
+*/
 function recherche(){
     let input = searchbar.value;
     let temp = input.toUpperCase();

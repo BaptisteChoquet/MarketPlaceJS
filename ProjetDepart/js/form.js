@@ -17,7 +17,7 @@ Add an Event Listener on Name Input
 
 */
 
-inpName.addEventListener('input', function(e){
+inpName.addEventListener('input', function(e){//chek if the name is correct
 
     let name = inpName.value
     
@@ -35,7 +35,7 @@ inpName.addEventListener('input', function(e){
 
 })
 
-inpAdress.addEventListener('input',function(e){
+inpAdress.addEventListener('input',function(e){//chek if the adresse is correct
 
     let adresse = inpAdress.value
     
@@ -52,7 +52,7 @@ inpAdress.addEventListener('input',function(e){
 
 })
     
-inpPcode.addEventListener('input',function(e){
+inpPcode.addEventListener('input',function(e){//chek if the departement code is correct
     let Pcode = inpPcode.value;
     if(Pcode.length ==5 && Pcode.search(/[a-z]/) == -1 && Pcode.search(/[A-Z]/) == -1){
         allImg[2].style.display = "block";
@@ -68,7 +68,7 @@ inpPcode.addEventListener('input',function(e){
 
 })
 
-inpPays.addEventListener('input',function(e){
+inpPays.addEventListener('input',function(e){//chek if the country is correct
     let pays = inpPays.value;
     if(pays.length >= 4 && pays.search(/[0-9]/) == -1){
         allImg[3].style.display = "block";
@@ -89,7 +89,7 @@ Add an Event Listener on Mail Input
 
 */
 
-inpMail.addEventListener('input', function(e){
+inpMail.addEventListener('input', function(e){//chek if the Mail is correct
 
     const regexEmail = /\S+@\S+\.\S+/;
     
@@ -124,7 +124,7 @@ let objValidation = {
 
 
 
-inpTelNum.addEventListener('input',function(e){
+inpTelNum.addEventListener('input',function(e){//chek if the telephone number is correct
 
     let nbTel = inpTelNum.value;
     if(nbTel.search(/[+]/) == 0){
@@ -157,7 +157,7 @@ Add an Event Listener on cb Input
 
 */
 
-inpCB.addEventListener('input', function(e){
+inpCB.addEventListener('input', function(e){//chek if the credit card code is correct
 
     valeurInp = e.target.value;
 
@@ -210,7 +210,7 @@ Add an Event Listener on Confirmation Input
 
 */
 
-inpConfirm.addEventListener('click',function(e){
+inpConfirm.addEventListener('click',function(e){//chek if the form is correct and if all is correct confirm the form
 
     for(let i = 0;i<allImg.length;i++){
         if(allImg[i].src == "ressources/error.svg" || allImg[i].style.display == ""){
