@@ -35,6 +35,7 @@ function loadCours(){
 
 		let newH4 = document.createElement('h4');
 		let newText = document.createTextNode(COURSES[i].title);
+		newH4.setAttribute('class','title')
 		newH4.appendChild(newText)
 		newDiv3.appendChild(newH4);
 

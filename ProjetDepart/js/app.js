@@ -5,6 +5,9 @@ let allDiscount = document.querySelectorAll('.discount');
 let allStock = document.querySelectorAll('.stock');
 const confirmeCart = document.querySelector('#order');
 let emptyCart = document.querySelector('#empty-cart');
+let searchbar = document.querySelector('#inputText');
+
+
 
 confirmeCart.addEventListener("click",function(e){
 	window.location = "js/form.html";
@@ -148,6 +151,124 @@ function createNotif(Article,Text){
 
 
 }
+
+
+//------------Register the item in the local storage-----------------------------//
+
+const stringifyCourses = JSON.stringify(COURSES);
+const parseCourses = JSON.parse(localStorage.getItem("panier"));
+
+/*  open a click registration form page
+*/
+//confirmeCart.addEventListener('click', formulaire)
+/*
+function saveContentPanier() {
+function formulaire(){
+	window.open("js/form.html");
+}
+
+    localStorage.setItem("panier", stringifyCourses)
+}
+
+saveContentPanier();
+*/
+//-------------Register item in the cart (visual)----------------------//
+
+function LocalStorageCharge(){
+    if(localStorage.getItem('Panier') != null){
+        for(let i = 0; i < panier.length; i++){
+            console.log(panier[i].title);
+            const article = document.createElement('tr');
+
+            const articleImg = document.createElement('td');
+
+            const imageTd = document.createElement('img');
+            imageTd.setAttribute('src', panier[i].img);
+            articleImg.appendChild(imageTd);
+
+            const articleTitle = document.createElement('td');
+            articleTitle.innerText = panier[i].title;
+
+            const articlePrice = document.createElement('td');
+            articlePrice.innerText = panier[i].price;
+
+            const articleStock = document.createElement('td');
+            articleStock.innerText = panier[i].stock;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------Surf in the search Bar---------------------------//
+
+searchbar.addEventListener('keyup',recherche);
+
+function recherche(){
+    let input = searchbar.value;
+    let temp = input.toUpperCase();
+    let cards = document.querySelectorAll('.course__item');
+    let errormsg = document.querySelector('.hidden');
+    let hiddenCards = 0;
+	
+	
+    for(let i = 0; i < cards.length;i++){
+    	let cardTitle = document.querySelectorAll('.title')
+        let newName = cardTitle[i].innerText.toUpperCase();
+        if(!(newName.includes(temp))){
+            cards[i].style.display = "none";
+            hiddenCards++;
+        } else {
+            cards[i].style.display = "flex";
+        }
+        if(hiddenCards === cards.length){
+            errormsg.setAttribute('style','display:block !important');
+        } else {
+            errormsg.setAttribute('style','display:none !important');
+        }
+    }
+}
+
+
+
+
+
 
 
 
